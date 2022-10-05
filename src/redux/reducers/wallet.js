@@ -2,7 +2,7 @@ import { RECEIVE_API, NEW_ENTRY } from '../actions';
 
 const INITIAL_STATE = {
   expenses: [],
-  currencies: '',
+  currencies: [],
 };
 
 function wallet(state = INITIAL_STATE, action) {
