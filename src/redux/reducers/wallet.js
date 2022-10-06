@@ -1,8 +1,10 @@
-import { RECEIVE_API, NEW_ENTRY } from '../actions';
+import { RECEIVE_API, NEW_ENTRY, NEW_VALUE, REMOVE_ENTRY } from '../actions';
 
 const INITIAL_STATE = {
   expenses: [],
   currencies: [],
+  totalValue: 0,
+  entryesCount: 0,
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -15,6 +17,17 @@ function wallet(state = INITIAL_STATE, action) {
     return {
       ...state,
       expenses: action.entry,
+      entryesCount: action.id,
+    };
+  case REMOVE_ENTRY:
+    return {
+      ...state,
+      expenses: action.newExpenses,
+    };
+  case NEW_VALUE:
+    return {
+      ...state,
+      totalValue: action.totalValue,
     };
   default:
     return state;

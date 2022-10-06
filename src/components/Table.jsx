@@ -1,8 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeEntry, totalExpenses } from '../redux/actions';
+import totalValue from '../services/calculateTotal';
 
 class Table extends Component {
+  handleDelete = async (event) => {
+    const {
+      expenses,
+      dispatch,
+    } = this.props;
+
+    const {
+      target: {
+        parentElement: {
+          parentElement: {
+            id,
+          },
+        },
+      },
+    } = event;
+
+    const newExpenses = expenses.filter((value) => value.id !== Number(id));
+
+    await dispatch(removeEntry(newExpenses));
+    this.dispatchTotal();
+  };
+
+  dispatchTotal = () => {
+    const {
+      expenses,
+      dispatch,
+    } = this.props;
+    dispatch(totalExpenses(totalValue(expenses)));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -34,7 +66,7 @@ class Table extends Component {
                   exchangeRates,
                 } = entry;
 
-                const TO_FIXED = 3;
+                const TO_FIXED = 2;
 
                 const reduced = Object.keys(exchangeRates)
                   .filter((key) => key.includes(currency))
@@ -50,6 +82,7 @@ class Table extends Component {
                 } = reduced[currency];
                 return (
                   <tr
+                    id={ id }
                     key={ id }
                   >
                     <td>{ description }</td>
@@ -59,10 +92,16 @@ class Table extends Component {
                     <td>{ name }</td>
                     <td>{ Number.parseFloat(ask).toFixed(2) }</td>
                     <td>Real</td>
-                    <td>{ value * Number.parseFloat(ask).toFixed(TO_FIXED) }</td>
+                    <td>{ (value * Number(ask)).toFixed(TO_FIXED) }</td>
                     <td>
                       <button type="button">edit</button>
-                      <button type="button">excluir</button>
+                      <button
+                        type="button"
+                        data-testid="delete-btn"
+                        onClick={ this.handleDelete }
+                      >
+                        excluir
+                      </button>
                     </td>
                   </tr>
                 );
@@ -84,6 +123,7 @@ Table.defaultProps = {
 
 Table.propTypes = {
   expenses: PropTypes.instanceOf(Array),
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, null)(Table);
