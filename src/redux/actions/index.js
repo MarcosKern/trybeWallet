@@ -3,6 +3,8 @@ const NEW_ENTRY = 'NEW_ENTRY';
 const REMOVE_ENTRY = 'REMOVE_ENTRY';
 const RECEIVE_API = 'RECEIVE_API';
 const NEW_VALUE = 'NEW_VALUE';
+const EDIT = 'EDIT';
+const EDIT_ENTRY = 'EDIT_ENTRY';
 
 export const login = (state) => {
   const action = {
@@ -50,4 +52,30 @@ export const removeEntry = (newExpenses) => {
   return action;
 };
 
-export { REMOVE_ENTRY, NEW_ENTRY, NEW_LOGIN, RECEIVE_API, NEW_VALUE };
+export const editEntry = (newExpenses) => {
+  const action = {
+    type: EDIT_ENTRY,
+    newExpenses,
+  };
+
+  return action;
+};
+
+export const isEditing = (edit) => {
+  const action = {
+    type: EDIT,
+    edit,
+  };
+
+  return action;
+};
+
+export {
+  REMOVE_ENTRY,
+  NEW_ENTRY,
+  NEW_LOGIN,
+  RECEIVE_API,
+  NEW_VALUE,
+  EDIT,
+  EDIT_ENTRY,
+};
