@@ -1,4 +1,4 @@
-import { RECEIVE_API, NEW_ENTRY, NEW_VALUE, REMOVE_ENTRY, EDIT_ENTRY } from '../actions';
+import { RECEIVE_API, NEW_ENTRY, NEW_VALUE, EDIT_ENTRY } from '../actions';
 
 const INITIAL_STATE = {
   expenses: [],
@@ -19,7 +19,7 @@ function wallet(state = INITIAL_STATE, action) {
       expenses: action.entry,
       entryesCount: action.id,
     };
-  case REMOVE_ENTRY || EDIT_ENTRY:
+  case EDIT_ENTRY:
     return {
       ...state,
       expenses: action.newExpenses,

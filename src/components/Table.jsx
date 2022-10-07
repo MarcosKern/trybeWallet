@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { isEditing, removeEntry, totalExpenses } from '../redux/actions';
+import { editEntry, isEditing, totalExpenses } from '../redux/actions';
 import totalValue from '../services/calculateTotal';
 import EditEntry from './EditEntry';
 
@@ -38,7 +38,7 @@ class Table extends Component {
 
     const newExpenses = expenses.filter((value) => value.id !== Number(id));
 
-    await dispatch(removeEntry(newExpenses));
+    await dispatch(editEntry(newExpenses));
     this.dispatchTotal();
   };
 
