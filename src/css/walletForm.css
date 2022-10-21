@@ -1,0 +1,24 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.newEntry {
+  display: flex; 
+  gap: .5em;
+  padding: 10px;
+  flex-wrap: wrap;
+  background-color: #628c62;
+}
+
+.newEntry input,
+.newEntry select,
+.newEntry button {
+  height: 25px;
+  flex-grow: 1;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  box-shadow: inset 10px 10px 20px #bebebe,
+}

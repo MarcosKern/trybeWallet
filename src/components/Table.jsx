@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import autoAnimate from '@formkit/auto-animate';
 import { connect } from 'react-redux';
 import { editEntry, isEditing, totalExpenses } from '../redux/actions';
 import totalValue from '../services/calculateTotal';
 import EditEntry from './EditEntry';
+
+import '../css/table.css';
 
 class Table extends Component {
   state = {
@@ -20,21 +23,11 @@ class Table extends Component {
     dispatch(isEditing(true));
   };
 
-  handleDelete = async (event) => {
+  handleDelete = async (id) => {
     const {
       expenses,
       dispatch,
     } = this.props;
-
-    const {
-      target: {
-        parentElement: {
-          parentElement: {
-            id,
-          },
-        },
-      },
-    } = event;
 
     const newExpenses = expenses.filter((value) => value.id !== Number(id));
 
@@ -54,23 +47,13 @@ class Table extends Component {
     const { expenses, editing } = this.props;
     const { data } = this.state;
     return (
-      <section>
-
+      <section
+        className="expensesTable"
+      >
         <table>
-          <thead>
-            <tr>
-              <th scope="col">Descrição</th>
-              <th scope="col">Tag</th>
-              <th scope="col">Método de pagamento</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Moeda</th>
-              <th scope="col">Câmbio utilizado</th>
-              <th scope="col">Moeda de conversão</th>
-              <th scope="col">Valor convertido</th>
-              <th scope="col">Editar/Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
+          <tbody
+            ref={ autoAnimate }
+          >
             {
               expenses !== undefined
                 && expenses.map((entry) => {
@@ -126,14 +109,20 @@ class Table extends Component {
                             })
                           }
                         >
-                          edit
+                          <img
+                            src="https://img.icons8.com/material-outlined/48/000000/ball-point-pen.png"
+                            alt="icone de edição"
+                          />
                         </button>
                         <button
                           type="button"
                           data-testid="delete-btn"
-                          onClick={ this.handleDelete }
+                          onClick={ () => this.handleDelete(id) }
                         >
-                          excluir
+                          <img
+                            src="https://img.icons8.com/ios-glyphs/60/000000/delete.png"
+                            alt="icone de lixeira"
+                          />
                         </button>
                       </td>
                     </tr>

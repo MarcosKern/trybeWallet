@@ -5,6 +5,8 @@ import { newEntry, receiveApi, totalExpenses } from '../redux/actions';
 import callApi from '../services/callApi';
 import totalValue from '../services/calculateTotal';
 
+import '../css/walletForm.css';
+
 class WalletForm extends Component {
   state = {
     loaded: false,
@@ -111,21 +113,25 @@ class WalletForm extends Component {
       <form
         onSubmit={ this.handleSubmit }
       >
-
         {
           !editing
             && (
-              <section>
+              <section
+                className="newEntry"
+              >
                 <input
                   data-testid="value-input"
+                  className="valueInput"
                   type="number"
                   name="value"
                   value={ value }
+                  placeholder="Despesa"
                   onChange={ this.handleChange }
                 />
                 <select
                   data-testid="currency-input"
                   name="currency"
+                  className="currencyInput"
                   defaultValue={ currency }
                   onChange={ this.handleChange }
                 >
@@ -144,6 +150,7 @@ class WalletForm extends Component {
                 <select
                   name="method"
                   data-testid="method-input"
+                  className="methodInput"
                   defaultValue={ method }
                   onChange={ this.handleChange }
                 >
@@ -154,6 +161,7 @@ class WalletForm extends Component {
                 <select
                   name="tag"
                   data-testid="tag-input"
+                  className="tagInput"
                   defaultValue={ tag }
                   onChange={ this.handleChange }
                 >
@@ -167,11 +175,16 @@ class WalletForm extends Component {
                   data-testid="description-input"
                   type="text"
                   name="description"
+                  className="descriptionInput"
                   placeholder="Descrição"
                   value={ description }
                   onChange={ this.handleChange }
                 />
-                <button type="submit">Adicionar despesa</button>
+                <button
+                  type="submit"
+                >
+                  Adicionar despesa
+                </button>
               </section>
             )
         }

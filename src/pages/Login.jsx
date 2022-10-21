@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../redux/actions';
 
+import '../css/login.css';
+
 class Login extends React.Component {
   state = {
     disable: true,
@@ -49,31 +51,54 @@ class Login extends React.Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="loginScreen">
         <form
           onSubmit={ this.handleSubmit }
         >
-          <input
-            type="email"
-            placeholder="Email"
-            data-testid="email-input"
-            id="email"
-            onChange={ this.handleChange }
-          />
-          <input
-            type="password"
-            placeholder="password"
-            data-testid="password-input"
-            id="password"
-            onChange={ this.handleChange }
-          />
-          <button
-            type="submit"
-            disabled={ disable }
-          >
-            Entrar
-          </button>
+          <fieldset>
+            <input
+              type="email"
+              placeholder="Email"
+              data-testid="email-input"
+              id="email"
+              onChange={ this.handleChange }
+            />
+            <input
+              type="password"
+              placeholder="password"
+              data-testid="password-input"
+              id="password"
+              onChange={ this.handleChange }
+            />
+            <button
+              type="submit"
+              className="submitLoginButton"
+              disabled={ disable }
+            >
+              Entrar
+            </button>
+            <span
+              className="line"
+            />
+            <button
+              type="button"
+              className="loginWithGoogle"
+            >
+              Google
+            </button>
+            <button
+              type="button"
+              className="loginWithLinkedin"
+            >
+              Linkedin
+            </button>
+          </fieldset>
         </form>
+        <section
+          className="banner"
+        >
+          <span className="coin" />
+        </section>
         {
           redirect && <Redirect to="/carteira" />
         }

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { editEntry, isEditing, totalExpenses } from '../redux/actions';
 import totalValue from '../services/calculateTotal';
 
+import '../css/editEntry.css';
+
 class EditEntry extends React.Component {
   state = {
     id: '',
@@ -97,6 +99,7 @@ class EditEntry extends React.Component {
     return (
       <form
         onSubmit={ this.handleSubmit }
+        className="edit"
       >
         <input
           data-testid="value-input"

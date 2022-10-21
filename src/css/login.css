@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 639px) {
+  .banner {
+    display: none;
+  }
+
+  .loginScreen form {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .banner {
+    flex: 1;
+  }
+
+  .loginScreen form {
+    min-width: 350px;
+    max-width: 400px;
+  }
+}
+
+.loginScreen {
+  height: 100vh;
+  display: flex;
+}
+
+.loginScreen form {
+  height: 100%;
+  flex: 1;
+  background-image: url(https://images.unsplash.com/photo-1624365168785-c65be9114821?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29sZCUyMGNvaW5zfGVufDB8fDB8fA%3D%3D&w=1000&q=80);
+  padding: 20px;
+  display: flex;
+}
+
+.loginScreen form fieldset {
+  width: 100%;
+  background-color: #000d;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.loginScreen form input {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  background-color: #dddddd20;
+  text-align: center;
+  color: #fff;
+}
+
+.loginScreen form input,
+.loginScreen form button {
+  height: 2.5em;
+  width: 70%;
+  border: none;
+  border-radius: 5px;
+}
+
+.submitLoginButton:disabled {
+  background-color: #777;
+  transition: .3s ease;
+}
+
+.submitLoginButton:enabled {
+  background-color: #FFD700;
+  transition: .3s ease;
+  color: #000;
+}
+
+.loginWithGoogle {
+  background-color: #DB4437;
+  color: #fff;
+  transition: .2s ease;
+}
+
+.loginWithLinkedin {
+  background-color: #0e76a8;
+  color: #fff;
+  transition: .2s ease;
+}
+
+.line {
+  width: 70%;
+  height: 1px;
+  background-color: #777;
+}
+
+.banner {
+  background-color: #161616;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form button:enabled:hover {
+  cursor: pointer;
+  filter: brightness(.8);
+  transition: .2s ease;
+}
