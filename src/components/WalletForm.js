@@ -10,7 +10,7 @@ import '../css/walletForm.css';
 class WalletForm extends Component {
   state = {
     loaded: false,
-    value: '',
+    value: 0,
     currency: 'USD',
     method: 'Dinheiro',
     tag: 'Alimentação',
@@ -77,7 +77,7 @@ class WalletForm extends Component {
     this.dispatchTotal();
 
     this.setState({
-      value: '',
+      value: 0,
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
@@ -99,7 +99,7 @@ class WalletForm extends Component {
   };
 
   render() {
-    const { currencies, editing } = this.props;
+    const { currencies } = this.props;
     const {
       loaded,
       value,
@@ -113,81 +113,80 @@ class WalletForm extends Component {
       <form
         onSubmit={ this.handleSubmit }
       >
-        {
-          !editing
-            && (
-              <section
-                className="newEntry"
-              >
-                <input
-                  data-testid="value-input"
-                  className="valueInput"
-                  type="number"
-                  name="value"
-                  value={ value }
-                  placeholder="Despesa"
-                  onChange={ this.handleChange }
-                />
-                <select
-                  data-testid="currency-input"
-                  name="currency"
-                  className="currencyInput"
-                  defaultValue={ currency }
-                  onChange={ this.handleChange }
+        <section
+          className="newEntry"
+        >
+          <input
+            data-testid="value-input"
+            className="valueInput"
+            type="number"
+            name="value"
+            value={ value }
+            placeholder="Despesa"
+            min="0"
+            onChange={ this.handleChange }
+          />
+          <select
+            data-testid="currency-input"
+            name="currency"
+            className="currencyInput"
+            defaultValue={ currency }
+            onChange={ this.handleChange }
+          >
+            {
+              loaded
+              && currencies.map((coin) => (
+                <option
+                  key={ coin }
+                  value={ coin }
                 >
-                  {
-                    loaded
-                    && currencies.map((coin) => (
-                      <option
-                        key={ coin }
-                        value={ coin }
-                      >
-                        { coin }
-                      </option>
-                    ))
-                  }
-                </select>
-                <select
-                  name="method"
-                  data-testid="method-input"
-                  className="methodInput"
-                  defaultValue={ method }
-                  onChange={ this.handleChange }
-                >
-                  <option value="Dinheiro">Dinheiro</option>
-                  <option value="Cartão de crédito">Cartão de crédito</option>
-                  <option value="Cartão de débito">Cartão de débito</option>
-                </select>
-                <select
-                  name="tag"
-                  data-testid="tag-input"
-                  className="tagInput"
-                  defaultValue={ tag }
-                  onChange={ this.handleChange }
-                >
-                  <option value="Alimentação">Alimentação</option>
-                  <option value="Lazer">Lazer</option>
-                  <option value="Trabalho">Trabalho</option>
-                  <option value="Transporte">Transporte</option>
-                  <option value="Saúde">Saúde</option>
-                </select>
-                <input
-                  data-testid="description-input"
-                  type="text"
-                  name="description"
-                  className="descriptionInput"
-                  placeholder="Descrição"
-                  value={ description }
-                  onChange={ this.handleChange }
-                />
-                <button
-                  type="submit"
-                >
-                  Adicionar despesa
-                </button>
-              </section>
-            )
-        }
+                  { coin }
+                </option>
+              ))
+            }
+          </select>
+          <select
+            name="method"
+            data-testid="method-input"
+            className="methodInput"
+            defaultValue={ method }
+            onChange={ this.handleChange }
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+          <select
+            name="tag"
+            data-testid="tag-input"
+            className="tagInput"
+            defaultValue={ tag }
+            onChange={ this.handleChange }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+          <input
+            data-testid="description-input"
+            type="text"
+            name="description"
+            className="descriptionInput"
+            placeholder="Descrição"
+            maxLength="34"
+            minLength="6"
+            required
+            value={ description }
+            onChange={ this.handleChange }
+          />
+          <button
+            type="submit"
+          >
+            Adicionar despesa
+          </button>
+        </section>
       </form>
     );
   }
@@ -203,7 +202,6 @@ const mapStateToProps = (state) => ({
 WalletForm.defaultProps = {
   expenses: [],
   id: 0,
-  editing: false,
 };
 
 WalletForm.propTypes = {
@@ -211,7 +209,6 @@ WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.instanceOf(Array),
   id: PropTypes.number,
-  editing: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, null)(WalletForm);

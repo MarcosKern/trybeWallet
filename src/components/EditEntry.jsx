@@ -97,66 +97,75 @@ class EditEntry extends React.Component {
       description,
     } = this.state;
     return (
-      <form
-        onSubmit={ this.handleSubmit }
-        className="edit"
+      <section
+        className="editEntry"
       >
-        <input
-          data-testid="value-input"
-          type="number"
-          name="value"
-          value={ value }
-          onChange={ this.handleChange }
-        />
-        <select
-          data-testid="currency-input"
-          name="currency"
-          defaultValue={ currency }
-          onChange={ this.handleChange }
+        <form
+          onSubmit={ this.handleSubmit }
+          className="edit"
         >
-          {
-            currencies.map((coin) => (
-              <option
-                key={ coin }
-                value={ coin }
-              >
-                { coin }
-              </option>
-            ))
-          }
-        </select>
-        <select
-          name="method"
-          data-testid="method-input"
-          defaultValue={ method }
-          onChange={ this.handleChange }
-        >
-          <option value="Dinheiro">Dinheiro</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
-          <option value="Cartão de débito">Cartão de débito</option>
-        </select>
-        <select
-          name="tag"
-          data-testid="tag-input"
-          defaultValue={ tag }
-          onChange={ this.handleChange }
-        >
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Trabalho">Trabalho</option>
-          <option value="Transporte">Transporte</option>
-          <option value="Saúde">Saúde</option>
-        </select>
-        <input
-          data-testid="description-input"
-          type="text"
-          name="description"
-          placeholder="Descrição"
-          value={ description }
-          onChange={ this.handleChange }
-        />
-        <button type="submit">Editar despesa</button>
-      </form>
+          <input
+            data-testid="value-input"
+            type="number"
+            name="value"
+            required
+            min="0"
+            value={ value }
+            onChange={ this.handleChange }
+          />
+          <select
+            data-testid="currency-input"
+            name="currency"
+            defaultValue={ currency }
+            onChange={ this.handleChange }
+          >
+            {
+              currencies.map((coin) => (
+                <option
+                  key={ coin }
+                  value={ coin }
+                >
+                  { coin }
+                </option>
+              ))
+            }
+          </select>
+          <select
+            name="method"
+            data-testid="method-input"
+            defaultValue={ method }
+            onChange={ this.handleChange }
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+          <select
+            name="tag"
+            data-testid="tag-input"
+            defaultValue={ tag }
+            onChange={ this.handleChange }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+          <input
+            data-testid="description-input"
+            type="text"
+            name="description"
+            placeholder="Descrição"
+            minLength="6"
+            maxLength="34"
+            required
+            value={ description }
+            onChange={ this.handleChange }
+          />
+          <button type="submit">Editar despesa</button>
+        </form>
+      </section>
     );
   }
 }

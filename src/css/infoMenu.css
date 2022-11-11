@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  position: relative;
+}
+
+.infoMenu {
+  background-color: #FFD700;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 48px;
+  transition: .2s ease-in-out;
+}
+
+.infoBanner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+}
+
+.lkdBanner {
+  width: 100px;
+}
+
+.lkdPhoto {
+  height: 38px;
+  width: 38px;
+}
+
+.questionMark {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidde {
+  height: 36px;
+  width: 36px;
+}
+
+.show {
+  height: 200px;
+  width: 200px;
+}

@@ -13,16 +13,17 @@ class Header extends Component {
 
     return (
       <header>
-        <div>
-          <h1>Trybewallet</h1>
-        </div>
-        <div>
-          <h2
-            data-testid="email-field"
-          >
-            { email }
-          </h2>
+        <section>
+          <h1>
+            Trybe
+            <span>Wallet</span>
+          </h1>
           <div>
+            <h2
+              data-testid="email-field"
+            >
+              { email }
+            </h2>
             <p>
               Total
               <span
@@ -37,7 +38,7 @@ class Header extends Component {
               </span>
             </p>
           </div>
-        </div>
+        </section>
       </header>
     );
   }

@@ -7,6 +7,8 @@ import totalValue from '../services/calculateTotal';
 import EditEntry from './EditEntry';
 
 import '../css/table.css';
+import editSvg from '../icons/edit.svg';
+import deleteSvg from '../icons/delete.svg';
 
 class Table extends Component {
   state = {
@@ -94,9 +96,12 @@ class Table extends Component {
                       <td>{ Number.parseFloat(ask).toFixed(2) }</td>
                       <td>Real</td>
                       <td>{ (value * Number(ask)).toFixed(TO_FIXED) }</td>
-                      <td>
+                      <td
+                        className="editDelete"
+                      >
                         <button
                           type="button"
+                          className="editBtn"
                           data-testid="edit-btn"
                           onClick={
                             () => this.handleEdit({
@@ -110,17 +115,18 @@ class Table extends Component {
                           }
                         >
                           <img
-                            src="https://img.icons8.com/material-outlined/48/000000/ball-point-pen.png"
+                            src={ editSvg }
                             alt="icone de edição"
                           />
                         </button>
                         <button
                           type="button"
+                          className="deleteBtn"
                           data-testid="delete-btn"
                           onClick={ () => this.handleDelete(id) }
                         >
                           <img
-                            src="https://img.icons8.com/ios-glyphs/60/000000/delete.png"
+                            src={ deleteSvg }
                             alt="icone de lixeira"
                           />
                         </button>

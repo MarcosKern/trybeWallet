@@ -4,16 +4,46 @@
   box-sizing: border-box;
 }
 
+header {
+  font-size: .8em;
+  background-image: url(https://img.freepik.com/free-photo/close-up-education-economy-objects_23-2149113525.jpg?w=740&t=st=1666376458~exp=1666377058~hmac=7b2061ed03f4e2c5d72789938e96c4bd0f6988e2be628a4479bc408d7ef651ec);
+  background-size: cover;
+  background-position: bottom;
+}
+
 @media screen and (max-width: 450px) {
   header {
     text-align: center;
   }
 }
 
+@media screen and (min-width: 449px) {
+  header section{
+    display: flex;
+    justify-content: space-between;
+    text-align: end;
+    align-items: center;
+  }
+}
+
 header {
   height: 20vh;
   background-color: #161616;
-  padding: 1em;
   color: white;
+}
+
+header section {
+  background-color: #16161690;
+  padding: 1.8em;
+  width: 100%;
+  height: 100%;
+}
+
+h1 span {
+  background-color: #FFD700;
+  padding: 8px 5px;
+  border-radius: 5px;
+  margin-inline-start: 5px;
+  color: #7e7850;
 }
 
